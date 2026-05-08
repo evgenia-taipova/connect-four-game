@@ -8,7 +8,8 @@ import components.GameScreen
 import game.GameConfig
 import game.GameEngine
 import game.GameState
-
+import kotlinx.browser.window
+import org.jetbrains.compose.web.css.Style
 import org.jetbrains.compose.web.renderComposable
 
 sealed class AppScreen {
@@ -18,6 +19,7 @@ sealed class AppScreen {
 
 fun main() {
     renderComposable(rootElementId = "root") {
+        Style(AppStyle)
         App()
     }
 }
@@ -52,15 +54,25 @@ fun App() {
             var gameState by remember(s) {
                 mutableStateOf(s.initialState ?: GameState.initial(s.config))
             }
+            var lastDrop by remember { mutableStateOf<Pair<Int, Int>?>(null) }
+
             GameScreen(
                 state = gameState,
+                lastDrop = lastDrop,
                 onColumnClick = { col ->
-                    gameState = GameEngine.dropPiece(gameState, col)
+                    val prev = gameState
+                    gameState = GameEngine.dropPiece(prev, col)
                     saveGameState(gameState)
+                    val row = (0 until gameState.config.rows).firstOrNull { r ->
+                        gameState.board[r][col] != prev.board[r][col]
+                    }
+                    lastDrop = row?.let { it to col }
+                    window.setTimeout({ lastDrop = null }, 400)
                 },
                 onNewGame = {
                     gameState = GameState.initial(s.config)
                     saveGameState(gameState)
+                    lastDrop = null
                 },
                 onBackToConfig = {
                     screen = AppScreen.Config

@@ -8,6 +8,7 @@ import org.jetbrains.compose.web.dom.*
 @Composable
 fun GameScreen(
     state: GameState,
+    lastDrop: Pair<Int, Int>? = null,
     onColumnClick: (Int) -> Unit,
     onNewGame: () -> Unit,
     onBackToConfig: () -> Unit
@@ -55,7 +56,7 @@ fun GameScreen(
             Text(statusText)
         }
 
-        Board(state = state, onColumnClick = onColumnClick)
+        Board(state = state, lastDrop = lastDrop, onColumnClick = onColumnClick)
 
         Div(attrs = {
             style {
