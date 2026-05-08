@@ -22,7 +22,7 @@ fun ConfigScreen(onStart: (GameConfig) -> Unit) {
             display(DisplayStyle.Flex)
             flexDirection(FlexDirection.Column)
             alignItems(AlignItems.Center)
-            padding(32.px)
+            property("padding", "clamp(8px, 4vw, 32px)")
             property("font-family", "Arial, sans-serif")
         }
     }) {

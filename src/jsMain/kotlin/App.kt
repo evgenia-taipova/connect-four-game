@@ -34,7 +34,8 @@ fun App() {
             GameScreen(
                 state = gameState,
                 onColumnClick = { col -> gameState = GameEngine.dropPiece(gameState, col) },
-                onNewGame = { gameState = GameState.initial(s.config) }
+                onNewGame = { gameState = GameState.initial(s.config) },
+                onBackToConfig = { screen = AppScreen.Config }
             )
         }
     }

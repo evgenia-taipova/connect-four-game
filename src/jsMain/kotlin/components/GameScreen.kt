@@ -9,14 +9,15 @@ import org.jetbrains.compose.web.dom.*
 fun GameScreen(
     state: GameState,
     onColumnClick: (Int) -> Unit,
-    onNewGame: () -> Unit
+    onNewGame: () -> Unit,
+    onBackToConfig: () -> Unit
 ) {
     Div(attrs = {
         style {
             display(DisplayStyle.Flex)
             flexDirection(FlexDirection.Column)
             alignItems(AlignItems.Center)
-            padding(32.px)
+            property("padding", "clamp(8px, 4vw, 32px)")
             property("font-family", "Arial, sans-serif")
         }
     }) {
@@ -57,20 +58,42 @@ fun GameScreen(
         Board(state = state, onColumnClick = onColumnClick)
 
         if (state.status !is GameStatus.Playing) {
-            Button(attrs = {
+            Div(attrs = {
                 style {
+                    display(DisplayStyle.Flex)
+                    property("gap", "12px")
                     marginTop(24.px)
-                    padding(12.px)
-                    fontSize(16.px)
-                    property("cursor", "pointer")
-                    backgroundColor(Color("#1565C0"))
-                    color(Color("#ffffff"))
-                    property("border", "none")
-                    borderRadius(6.px)
                 }
-                onClick { onNewGame() }
             }) {
-                Text("New Game")
+                Button(attrs = {
+                    style {
+                        padding(12.px)
+                        fontSize(16.px)
+                        property("cursor", "pointer")
+                        backgroundColor(Color("#1565C0"))
+                        color(Color("#ffffff"))
+                        property("border", "none")
+                        borderRadius(6.px)
+                    }
+                    onClick { onNewGame() }
+                }) {
+                    Text("New Game")
+                }
+
+                Button(attrs = {
+                    style {
+                        padding(12.px)
+                        fontSize(16.px)
+                        property("cursor", "pointer")
+                        backgroundColor(Color("#546E7A"))
+                        color(Color("#ffffff"))
+                        property("border", "none")
+                        borderRadius(6.px)
+                    }
+                    onClick { onBackToConfig() }
+                }) {
+                    Text("Back to Settings")
+                }
             }
         }
     }
