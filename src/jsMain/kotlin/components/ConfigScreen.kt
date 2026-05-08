@@ -17,10 +17,13 @@ fun ConfigScreen(
     var cols by remember { mutableStateOf(7) }
     var winCondition by remember { mutableStateOf(4) }
 
-    val maxWin = minOf(rows, cols, 10)
+    val maxWin = minOf(rows.coerceAtLeast(2), cols.coerceAtLeast(2), 10)
     if (winCondition > maxWin) winCondition = maxWin
 
-    val isValid = rows in 2..20 && cols in 2..20 && winCondition in 2..maxWin
+    val rowsValid = rows in 2..20
+    val colsValid = cols in 2..20
+    val winValid = winCondition in 2..maxWin
+    val isValid = rowsValid && colsValid && winValid
 
     Div(attrs = {
         style {
@@ -53,8 +56,10 @@ fun ConfigScreen(
                 color(Color("#F44336"))
             }
         }) {
-            if (!isValid) {
-                Text("Win condition must be between 2 and $maxWin")
+            when {
+                !rowsValid -> Text("Rows must be between 2 and 20")
+                !colsValid -> Text("Columns must be between 2 and 20")
+                !winValid -> Text("Win condition must be between 2 and $maxWin")
             }
         }
 
@@ -156,7 +161,7 @@ private fun ConfigField(
                 property("border", "1px solid #ccc")
             }
             onInput { event ->
-                event.value?.toInt()?.coerceIn(min, max)?.let { onChange(it) }
+                event.value?.toInt()?.let { onChange(it) }
             }
         })
     }
