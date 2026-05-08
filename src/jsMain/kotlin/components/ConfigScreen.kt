@@ -31,7 +31,8 @@ fun ConfigScreen(
             flexDirection(FlexDirection.Column)
             alignItems(AlignItems.Center)
             property("padding", "clamp(8px, 4vw, 32px)")
-            property("font-family", "Arial, sans-serif")
+            property("font-family", "'Onest', sans-serif")
+            color(Color("#3d2314"))
         }
     }) {
         H1(attrs = { style { marginBottom(8.px) } }) {
@@ -53,7 +54,7 @@ fun ConfigScreen(
                 height(20.px)
                 marginBottom(8.px)
                 fontSize(14.px)
-                color(Color("#F44336"))
+                color(Color("#c0392b"))
             }
         }) {
             when {
@@ -67,9 +68,11 @@ fun ConfigScreen(
             style {
                 padding(12.px)
                 fontSize(16.px)
+                property("font-family", "inherit")
+                property("font-weight", "700")
                 property("cursor", if (isValid) "pointer" else "not-allowed")
-                backgroundColor(if (isValid) Color("#1565C0") else Color("#90A4AE"))
-                color(Color("#ffffff"))
+                backgroundColor(if (isValid) Color("#eca439") else Color("#d4c8ae"))
+                color(Color("#3d2314"))
                 property("border", "none")
                 borderRadius(6.px)
             }
@@ -89,7 +92,7 @@ fun ConfigScreen(
                     property("gap", "8px")
                     padding(16.px)
                     borderRadius(8.px)
-                    backgroundColor(Color("#F5F5F5"))
+                    backgroundColor(Color("#eae2ce"))
                     width(280.px)
                 }
             }) {
@@ -101,9 +104,11 @@ fun ConfigScreen(
                         width(100.percent)
                         padding(10.px)
                         fontSize(15.px)
+                        property("font-family", "inherit")
+                        property("font-weight", "600")
                         property("cursor", "pointer")
-                        backgroundColor(Color("#43A047"))
-                        color(Color("#ffffff"))
+                        backgroundColor(Color("#eca439"))
+                        color(Color("#3d2314"))
                         property("border", "none")
                         borderRadius(6.px)
                     }
@@ -116,10 +121,11 @@ fun ConfigScreen(
                         width(100.percent)
                         padding(8.px)
                         fontSize(13.px)
+                        property("font-family", "inherit")
                         property("cursor", "pointer")
-                        backgroundColor(Color("#ffffff"))
-                        color(Color("#999999"))
-                        property("border", "1px solid #dddddd")
+                        backgroundColor(Color("#faf8ef"))
+                        color(Color("#888888"))
+                        property("border", "1px solid #d4c8ae")
                         borderRadius(6.px)
                     }
                     onClick { onClearSave() }
@@ -157,8 +163,11 @@ private fun ConfigField(
                 width(80.px)
                 padding(6.px)
                 fontSize(16.px)
+                property("font-family", "inherit")
                 borderRadius(4.px)
-                property("border", "1px solid #ccc")
+                property("border", "1px solid #d4c8ae")
+                backgroundColor(Color("#faf8ef"))
+                color(Color("#3d2314"))
             }
             onInput { event ->
                 event.value?.toInt()?.let { onChange(it) }

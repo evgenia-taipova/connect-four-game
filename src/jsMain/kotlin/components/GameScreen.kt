@@ -19,7 +19,8 @@ fun GameScreen(
             flexDirection(FlexDirection.Column)
             alignItems(AlignItems.Center)
             property("padding", "clamp(8px, 4vw, 32px)")
-            property("font-family", "Arial, sans-serif")
+            property("font-family", "'Onest', sans-serif")
+            color(Color("#3d2314"))
         }
     }) {
         H1(attrs = {
@@ -40,9 +41,9 @@ fun GameScreen(
         val statusColor = when (state.status) {
             is GameStatus.Playing -> when (state.currentPlayer) {
                 Player.RED -> Color("#F44336")
-                Player.YELLOW -> Color("#F9A825")
+                Player.YELLOW -> Color("#eca439")
             }
-            else -> Color("#333333")
+            else -> Color("#3d2314")
         }
 
         Div(attrs = {
@@ -69,9 +70,11 @@ fun GameScreen(
                 style {
                     padding(12.px)
                     fontSize(16.px)
+                    property("font-family", "inherit")
+                    property("font-weight", "700")
                     property("cursor", "pointer")
-                    backgroundColor(Color("#1565C0"))
-                    color(Color("#ffffff"))
+                    backgroundColor(Color("#eca439"))
+                    color(Color("#3d2314"))
                     property("border", "none")
                     borderRadius(6.px)
                 }
@@ -84,9 +87,10 @@ fun GameScreen(
                 style {
                     padding(12.px)
                     fontSize(16.px)
+                    property("font-family", "inherit")
                     property("cursor", "pointer")
-                    backgroundColor(Color("#546E7A"))
-                    color(Color("#ffffff"))
+                    backgroundColor(Color("#eae2ce"))
+                    color(Color("#3d2314"))
                     property("border", "none")
                     borderRadius(6.px)
                 }

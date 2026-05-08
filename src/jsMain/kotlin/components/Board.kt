@@ -18,7 +18,7 @@ fun Board(state: GameState, lastDrop: Pair<Int, Int>? = null, onColumnClick: (In
             display(DisplayStyle.Flex)
             property("flex-direction", "row")
             property("gap", "6px")
-            backgroundColor(Color("#1565C0"))
+            backgroundColor(Color("#3d2314"))
             padding(12.px)
             borderRadius(8.px)
         }

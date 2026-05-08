@@ -13,7 +13,7 @@ fun Cell(cellState: CellState, isWinning: Boolean = false, isLastDrop: Boolean =
             property("width", cellSize)
             property("height", cellSize)
             borderRadius(50.percent)
-            backgroundColor(Color("#0D47A1"))
+            backgroundColor(Color("#faf8ef"))
             position(Position.Relative)
         }
     }) {
@@ -33,9 +33,9 @@ fun Cell(cellState: CellState, isWinning: Boolean = false, isLastDrop: Boolean =
                     backgroundColor(
                         when {
                             isWinning && cellState == CellState.RED -> Color("#FF1744")
-                            isWinning && cellState == CellState.YELLOW -> Color("#FFD600")
+                            isWinning && cellState == CellState.YELLOW -> Color("#f59300")
                             cellState == CellState.RED -> Color("#F44336")
-                            cellState == CellState.YELLOW -> Color("#FDD835")
+                            cellState == CellState.YELLOW -> Color("#eca439")
                             else -> Color("#BBDEFB")
                         }
                     )
