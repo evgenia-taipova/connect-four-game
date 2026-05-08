@@ -40,6 +40,10 @@ Opens at `http://localhost:8080`.
 
 Output in `build/dist/js/productionExecutable/`.
 
+## Live demo
+
+http://connect-four-game-gold.vercel.app/
+
 ## Author
 
 Taipova Evgeniya
