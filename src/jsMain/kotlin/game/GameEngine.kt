@@ -58,6 +58,9 @@ object GameEngine {
         return null
     }
 
+    fun statusFromBoard(board: List<List<CellState>>, config: GameConfig): GameStatus =
+        findWin(board, config) ?: if (isDraw(board)) GameStatus.Draw else GameStatus.Playing
+
     private fun isDraw(board: List<List<CellState>>): Boolean =
         board.all { row -> row.all { it != CellState.EMPTY } }
 }

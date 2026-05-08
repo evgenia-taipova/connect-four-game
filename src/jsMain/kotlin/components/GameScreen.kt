@@ -57,43 +57,41 @@ fun GameScreen(
 
         Board(state = state, onColumnClick = onColumnClick)
 
-        if (state.status !is GameStatus.Playing) {
-            Div(attrs = {
+        Div(attrs = {
+            style {
+                display(DisplayStyle.Flex)
+                property("gap", "12px")
+                marginTop(24.px)
+            }
+        }) {
+            Button(attrs = {
                 style {
-                    display(DisplayStyle.Flex)
-                    property("gap", "12px")
-                    marginTop(24.px)
+                    padding(12.px)
+                    fontSize(16.px)
+                    property("cursor", "pointer")
+                    backgroundColor(Color("#1565C0"))
+                    color(Color("#ffffff"))
+                    property("border", "none")
+                    borderRadius(6.px)
                 }
+                onClick { onNewGame() }
             }) {
-                Button(attrs = {
-                    style {
-                        padding(12.px)
-                        fontSize(16.px)
-                        property("cursor", "pointer")
-                        backgroundColor(Color("#1565C0"))
-                        color(Color("#ffffff"))
-                        property("border", "none")
-                        borderRadius(6.px)
-                    }
-                    onClick { onNewGame() }
-                }) {
-                    Text("New Game")
-                }
+                Text("New Game")
+            }
 
-                Button(attrs = {
-                    style {
-                        padding(12.px)
-                        fontSize(16.px)
-                        property("cursor", "pointer")
-                        backgroundColor(Color("#546E7A"))
-                        color(Color("#ffffff"))
-                        property("border", "none")
-                        borderRadius(6.px)
-                    }
-                    onClick { onBackToConfig() }
-                }) {
-                    Text("Back to Settings")
+            Button(attrs = {
+                style {
+                    padding(12.px)
+                    fontSize(16.px)
+                    property("cursor", "pointer")
+                    backgroundColor(Color("#546E7A"))
+                    color(Color("#ffffff"))
+                    property("border", "none")
+                    borderRadius(6.px)
                 }
+                onClick { onBackToConfig() }
+            }) {
+                Text("Back to Settings")
             }
         }
     }

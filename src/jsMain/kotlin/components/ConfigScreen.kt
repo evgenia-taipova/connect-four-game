@@ -7,7 +7,12 @@ import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.*
 
 @Composable
-fun ConfigScreen(onStart: (GameConfig) -> Unit) {
+fun ConfigScreen(
+    hasSavedGame: Boolean = false,
+    onStart: (GameConfig) -> Unit,
+    onResume: () -> Unit = {},
+    onClearSave: () -> Unit = {}
+) {
     var rows by remember { mutableStateOf(6) }
     var cols by remember { mutableStateOf(7) }
     var winCondition by remember { mutableStateOf(4) }
@@ -67,6 +72,56 @@ fun ConfigScreen(onStart: (GameConfig) -> Unit) {
             onClick { if (isValid) onStart(GameConfig(rows, cols, winCondition)) }
         }) {
             Text("Start Game")
+        }
+
+        if (hasSavedGame) {
+            Div(attrs = {
+                style {
+                    marginTop(24.px)
+                    display(DisplayStyle.Flex)
+                    flexDirection(FlexDirection.Column)
+                    alignItems(AlignItems.Center)
+                    property("gap", "8px")
+                    padding(16.px)
+                    borderRadius(8.px)
+                    backgroundColor(Color("#F5F5F5"))
+                    width(280.px)
+                }
+            }) {
+                Div(attrs = { style { fontSize(14.px); color(Color("#666666")); marginBottom(4.px) } }) {
+                    Text("You have a saved game")
+                }
+                Button(attrs = {
+                    style {
+                        width(100.percent)
+                        padding(10.px)
+                        fontSize(15.px)
+                        property("cursor", "pointer")
+                        backgroundColor(Color("#43A047"))
+                        color(Color("#ffffff"))
+                        property("border", "none")
+                        borderRadius(6.px)
+                    }
+                    onClick { onResume() }
+                }) {
+                    Text("Resume Saved Game")
+                }
+                Button(attrs = {
+                    style {
+                        width(100.percent)
+                        padding(8.px)
+                        fontSize(13.px)
+                        property("cursor", "pointer")
+                        backgroundColor(Color("#ffffff"))
+                        color(Color("#999999"))
+                        property("border", "1px solid #dddddd")
+                        borderRadius(6.px)
+                    }
+                    onClick { onClearSave() }
+                }) {
+                    Text("Clear Saved Game")
+                }
+            }
         }
     }
 }
